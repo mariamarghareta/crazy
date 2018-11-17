@@ -90,5 +90,16 @@ class Gelombang extends CI_Model
         $this->db->where('id', $id);
         return $this->db->update('gelombang', $data);
     }
+    public function get_active_now(){
+        $query = $this->db->select('p.id, p.nama, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user')
+            ->from('gelombang p')
+            ->where('p.deleted',0)
+            ->join('pengguna c', 'c.id = p.create_id')
+            ->join('pengguna w', 'w.id = p.write_id')
+            ->where('p.active', 1)
+            ->where('p.deleted',0)
+            ->get();
+        return $query->result();
+    }
 }
 ?>

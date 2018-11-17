@@ -144,5 +144,17 @@ class Pengguna extends CI_Model
             return true;
         }
     }
+
+    public function get_score_per_wil($wilayah, $gelombang_id){
+        $query = "select id, nama, gelombang_id, wilayah_id, score from total_poin_peserta where (wilayah_id = " . $wilayah . " and gelombang_id = " . $gelombang_id . ") or (wilayah_id = " . $wilayah . " and gelombang_id IS NULL)";
+        $result = $this->db->query($query);
+        return $result->result();
+    }
+
+    public function get_total_per_wil($wilayah, $gelombang_id){
+        $query = "select wilayah_id, score from total_poin_wilayah where wilayah_id = " . $wilayah . " and gelombang_id = " . $gelombang_id;
+        $result = $this->db->query($query);
+        return $result->result();
+    }
 }
 ?>
