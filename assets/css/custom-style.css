@@ -1,0 +1,63 @@
+.btn-action{
+    margin: 0px 5px 0px 5px !important;
+}
+
+.margin-up-down{
+    margin:20px 0px;
+}
+
+.right-align{
+    text-align: right;
+}
+
+.page-title{
+    font-size:18pt;
+    font-weight:bold;
+}
+
+.margin-up-lg{
+    margin-top:60px;
+}
+
+.margin-up-md{
+    margin-top:40px;
+}
+
+.margin-up-sm{
+    margin-top:20px;
+}
+
+.margin-down-lg{
+    margin-bottom:60px;
+}
+
+.margin-down-md{
+    margin-bottom:40px;
+}
+
+.margin-down-sm{
+    margin-bottom:20px;
+}
+
+input:focus {
+    outline:none;
+    border-bottom: 1px solid darkgray;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer !important;
+}
+
+.req{
+    color: #68dff0;
+}
