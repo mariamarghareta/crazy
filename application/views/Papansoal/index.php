@@ -41,7 +41,7 @@
         <section class="wrapper site-min-height">
             <div class="col-md-8 col-md-offset-2 white-bg margin-up-md" style="text-align: center">
                 <?php if(sizeof($active_question) > 0){ ?>
-                    <h1><?=$active_question[0]->pertanyaan?></h1>
+                    <h1 id="pertanyaan"><?=$active_question[0]->pertanyaan?></h1>
                     <div class="row" style="margin-top: 50px;">
                         <input type="hidden" value="<?=$active_question[0]->id?>" id="tid" name="tid" />
                         <input type="hidden" value="<?=$jawaban?>" id="tjawab" name="tjawab" />
@@ -144,38 +144,48 @@
         }
     }
 
-    function explode(){
-        alert("Boom!");
+    function check_new_question(){
         $.ajax({
             type: "POST",
             url: "<?php echo base_url() . index_page() . "/Papansoal/get_question_now"; ?>",
             dataType: "json",
-            data: {soal_id: $("#tid").val(), jawaban: $("#tjawab").val()},
+            data: {},
             success: function(data) {
-                if(!data[0]){
-                    $("#btn_kunci").removeClass("btn-warning");
-                    $("#btn_benar").removeClass("btn-success");
-                    $("#btn_benar").addClass("btn-default");
-                    $("#btn_salah").removeClass("btn-danger");
-                    $("#btn_salah").addClass("btn-default");
-                    $("#btn_salah").removeAttr('disabled');
-                    $("#btn_benar").removeAttr('disabled');
-                    $("#tjawab").val("");
+                if(data[0].length > 0){
+                    $soal = data[0];
+                    if ($("#tid").val() != $soal[0]["id"]){
+                        alert("ahahah");
+                        $("#tid").val($soal[0]["id"]);
+                        $("#pertanyaan").html($soal[0]["pertanyaan"]);
+                        if(data[1] != "None"){
+                            $("#tjawab").val(data[1]);
+                            if(data[1] == 1){
+                                $("#btn_benar").addClass("btn-success");
+                            }else{
+                                $("#btn_salah").addClass("btn-danger");
+                            }
+                            $("#btn_salah").attr('disabled','disabled');
+                            $("#btn_benar").attr('disabled','disabled');
+                            $("#btn_kunci").addClass("btn-warning");
+                        } else {
+                            $("#tjawab").val("");
+                            $("#btn_kunci").removeClass("btn-warning");
+                            $("#btn_benar").removeClass("btn-success");
+                            $("#btn_benar").addClass("btn-default");
+                            $("#btn_salah").removeClass("btn-danger");
+                            $("#btn_salah").addClass("btn-default");
+                            $("#btn_salah").removeAttr('disabled');
+                            $("#btn_benar").removeAttr('disabled');
+                        }
+                    }
                 }
             },
             error: function(){
-                $("#btn_kunci").removeClass("btn-warning");
-                $("#btn_benar").removeClass("btn-success");
-                $("#btn_benar").addClass("btn-default");
-                $("#btn_salah").removeClass("btn-danger");
-                $("#btn_salah").addClass("btn-default");
-                $("#btn_salah").removeAttr('disabled');
-                $("#btn_benar").removeAttr('disabled');
-                $("#tjawab").val("");
+
             }
         });
     }
-//    setTimeout(explode, 5000);
+    setInterval(check_new_question, 3000);
 
 </script>
 

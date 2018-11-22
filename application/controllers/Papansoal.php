@@ -58,6 +58,13 @@ class Papansoal extends CI_Controller {
 
     public function get_question_now(){
         $result = $this->Pertanyaan->get_active_question();
-        echo json_encode($result);
+        $this->data["jawaban"] = "None";
+        if(sizeof($result)>0){
+            $jawaban_active = $this->Jwbpertanyaan->get_answer($result[0]->id, $_SESSION['id']);
+            if(sizeof($jawaban_active)>0){
+                $this->data["jawaban"] =  $jawaban_active[0]->jawaban;
+            }
+        }
+        echo json_encode([$result, $this->data["jawaban"]]);
     }
 }
