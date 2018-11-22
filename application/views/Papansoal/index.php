@@ -12,7 +12,7 @@
     <?php include($_SERVER['DOCUMENT_ROOT'] . $this->config->item('htdoc_folder') . 'application/views/header.php'); ?>
     <style type="text/css">
         .btnjawab{
-            font-size:20pt;
+            font-size:18pt;
         }
     </style>
 </head>
@@ -39,24 +39,25 @@
     <!--main content start-->
     <section id="">
         <section class="wrapper site-min-height">
-            <div class="col-md-8 col-md-offset-2 white-bg margin-up-md" style="text-align: center">
+            <div class="col-md-12 text-center" style="margin-top: 10px; margin-bottom: 10px;">Welcome, <?php echo $_SESSION['nama']; ?></div>
+            <div class="col-md-8 col-md-offset-2 white-bg" style="text-align: center">
                 <?php if(sizeof($active_question) > 0){ ?>
-                    <h1 id="pertanyaan"><?=$active_question[0]->pertanyaan?></h1>
-                    <div class="row" style="margin-top: 50px;">
+                    <h3 id="pertanyaan"><?=$active_question[0]->urutan_soal . ". " . $active_question[0]->pertanyaan?></h3>
+                    <div class="row" style="margin-top: 50px;" id="row_soal">
                         <input type="hidden" value="<?=$active_question[0]->id?>" id="tid" name="tid" />
                         <input type="hidden" value="<?=$jawaban?>" id="tjawab" name="tjawab" />
                         <button id="btn_benar" onclick="click_benar(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">BENAR</button>
                         <button id="btn_salah" onclick="click_salah(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">SALAH</button>
                     </div>
-                    <div class="row" style="margin-top: 30px;">
-                        <h4>Jika sudah yakin dengan jawaban Anda, segera kunci jawaban Anda</h4>
+                    <div class="row" style="margin-top: 30px;" id="row_jawaban">
+                        <h4>Kunci jawaban Anda!</h4>
                         <div class="row">
                             <button id="btn_kunci" onclick="lock(this)" class="btn col-sm-8 col-sm-offset-2 btn-default waves-effect btnjawab">KUNCI JAWABAN</button>
                         </div>
-                        <h5 style="color:red;">*Jawaban Terkunci apabila tombol berwarna kuning</h5>
+                        <h5 style="color:red;">*Jawaban terkunci apabila tombol berwarna kuning</h5>
                     </div>
                 <?php }else {?>
-                    <h1>Silahkan Menunggu Soal</h1>
+                    <h3>Silahkan Menunggu Soal</h3>
                 <?php } ?>
             </div>
         </section>
@@ -152,10 +153,12 @@
             data: {},
             success: function(data) {
                 if(data[0].length > 0){
+                    $("#row_soal").show();
+                    $("#row_jawaban").show();
                     $soal = data[0];
                     if ($("#tid").val() != $soal[0]["id"]){
                         $("#tid").val($soal[0]["id"]);
-                        $("#pertanyaan").html($soal[0]["pertanyaan"]);
+                        $("#pertanyaan").html($soal[0]["urutan_soal"] + ". " + $soal[0]["pertanyaan"]);
                         if(data[1] != "None"){
                             $("#tjawab").val(data[1]);
                             if(data[1] == 1){
@@ -177,6 +180,12 @@
                             $("#btn_benar").removeAttr('disabled');
                         }
                     }
+                } else {
+                    $("#pertanyaan").html("Silahkan Menunggu Soal");
+                    $("#row_soal").hide();
+                    $("#row_jawaban").hide();
+                    $("#tid").val("");
+                    $("#tjawab").val("");
                 }
             },
             error: function(){
