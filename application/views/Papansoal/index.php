@@ -43,6 +43,9 @@
             <div class="col-md-8 col-md-offset-2 white-bg" style="text-align: center">
                 <?php if(sizeof($active_question) > 0){ ?>
                     <h3 id="pertanyaan"><?=$active_question[0]->urutan_soal . ". " . $active_question[0]->pertanyaan?></h3>
+                <?php }else {?>
+                    <h3>Silahkan Menunggu Soal</h3>
+                <?php } ?>
                     <div class="row" style="margin-top: 50px;" id="row_soal">
                         <input type="hidden" value="<?=$active_question[0]->id?>" id="tid" name="tid" />
                         <input type="hidden" value="<?=$jawaban?>" id="tjawab" name="tjawab" />
@@ -56,9 +59,6 @@
                         </div>
                         <h5 style="color:red;">*Jawaban terkunci apabila tombol berwarna kuning</h5>
                     </div>
-                <?php }else {?>
-                    <h3>Silahkan Menunggu Soal</h3>
-                <?php } ?>
             </div>
         </section>
     </section>
