@@ -193,7 +193,7 @@
             }
         });
     }
-    setInterval(check_new_question, 3000);
+    setInterval(check_new_question, 2000);
 
 </script>
 
