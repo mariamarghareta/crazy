@@ -44,10 +44,10 @@
                 <?php if(sizeof($active_question) > 0){ ?>
                     <h3 id="pertanyaan"><?=$active_question[0]->urutan_soal . ". " . $active_question[0]->pertanyaan?></h3>
                 <?php }else {?>
-                    <h3>Silahkan Menunggu Soal</h3>
+                    <h3 id="pertanyaan">Silahkan Menunggu Soal</h3>
                 <?php } ?>
                     <div class="row" style="margin-top: 50px;" id="row_soal">
-                        <input type="hidden" value="<?=$active_question[0]->id?>" id="tid" name="tid" />
+                        <input type="hidden" value="<?php if(sizeof($active_question) > 0){echo $active_question[0]->id;} ?> " id="tid" name="tid" />
                         <input type="hidden" value="<?=$jawaban?>" id="tjawab" name="tjawab" />
                         <button id="btn_benar" onclick="click_benar(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">BENAR</button>
                         <button id="btn_salah" onclick="click_salah(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">SALAH</button>
@@ -80,6 +80,12 @@
             $("#btn_benar").attr('disabled','disabled');
             $("#btn_kunci").addClass("btn-warning");
         }
+        <?php if(sizeof($active_question) == 0){ ?>
+        $("#row_soal").hide();
+        $("#row_jawaban").hide();
+        $("#tid").val("");
+        $("#tjawab").val("");
+        <?php } ?>
     });
 
     $(document).ready(function(){
