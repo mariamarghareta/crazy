@@ -154,7 +154,6 @@
                 if(data[0].length > 0){
                     $soal = data[0];
                     if ($("#tid").val() != $soal[0]["id"]){
-                        alert("ahahah");
                         $("#tid").val($soal[0]["id"]);
                         $("#pertanyaan").html($soal[0]["pertanyaan"]);
                         if(data[1] != "None"){
