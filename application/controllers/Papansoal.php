@@ -57,6 +57,7 @@ class Papansoal extends CI_Controller {
     }
 
     public function get_question_now(){
+        $this->check_role();
         $result = $this->Pertanyaan->get_active_question();
         $this->data["jawaban"] = "None";
         if(sizeof($result)>0){
