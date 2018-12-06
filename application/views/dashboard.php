@@ -44,194 +44,124 @@
             <div class="row">
                 <div class="col-sm-2 col-sm-offset-1">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 1</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 1</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[0]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_1"><?=$total_score[0]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[0]);$i++){?>
-                            <div class="row row_nama" style="">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[0][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[0][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 2</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 2</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[1]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_2"><?=$total_score[1]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[1]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[1][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[1][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 3</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 3</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[2]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_3"><?=$total_score[2]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[2]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[2][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[2][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 4</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 4</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[3]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_4"><?=$total_score[3]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[3]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[3][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[3][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 5</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 5</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[4]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_5"><?=$total_score[4]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[4]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[4][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[4][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-2 col-sm-offset-1">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 6</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 6</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[5]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_6"><?=$total_score[5]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[5]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[5][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[5][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 7</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 7</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[6]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_7"><?=$total_score[6]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[6]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[6][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[6][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 8</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 8</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[7]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_8"><?=$total_score[7]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[7]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[7][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[7][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 9</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 9</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[8]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_9"><?=$total_score[8]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[8]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[8][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[8][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="white-bg margin-up-md">
-                        <div class="row" style="border-bottom: 1px solid gray;">
-                            <div class="col-sm-6">
-                                <h3>Wil. 10</h3>
+                        <div class="row" style="">
+                            <div class="col-sm-12" style="border-bottom: 1px solid gray;font-size: 35pt;text-align: center">
+                                <b>Wilayah 10</b>
                             </div>
-                            <div class="col-sm-6" style="text-align: right;">
-                                <h3><?=$total_score[9]?></h3>
+                            <div class="col-sm-12" style="text-align: center;font-size: 50pt">
+                                <div id="score_10"><?=$total_score[9]?></div>
                             </div>
                         </div>
-                        <?php for($i=0;$i<sizeof($score[9]);$i++){?>
-                            <div class="row row_nama">
-                                <div class="col-sm-1"> <?=$i+1?> </div>
-                                <div class="col-sm-8"> <?=$score[9][$i]->nama?> </div>
-                                <div class="col-sm-2"> <?=$score[9][$i]->score?> </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -254,6 +184,23 @@
         $(".slhide").hide();
         $(".slshow").show();
     });
+    function check_score(){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url() . index_page() . "/Dashboard/get_score_now"; ?>",
+            dataType: "json",
+            data: {},
+            success: function(data) {
+                for($i=0;$i<(data).length;$i++){
+                    $("#score_" + ($i+1)).html(data[$i]);
+                }
+            },
+            error: function(){
+                alert("error");
+            }
+        });
+    }
+    setInterval(check_score, 2000);
 </script>
 
 </body>

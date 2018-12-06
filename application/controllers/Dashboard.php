@@ -36,6 +36,24 @@ class Dashboard extends CI_Controller {
         $this->load->view('dashboard', $this->data);
     }
 
+    public function get_score_now(){
+        $result = $this->Gelombang->get_active_now();
+        $gel = 0;
+        if(sizeof($result)>0){
+            $gel = $result[0]->id;
+        }
+        $this->data["total_score"] = [];
+        for($i=0;$i<10;$i++){
+            $tot = 0;
+            $total_score = $this->Pengguna->get_total_per_wil($i+1, $gel);
+            if(sizeof($total_score) > 0){
+                $tot = $total_score[0]->score;
+            }
+            array_push($this->data["total_score"],$tot);
+        }
+        echo json_encode($this->data["total_score"]);
+    }
+
     public function logout(){
         session_destroy();
         redirect('Login');

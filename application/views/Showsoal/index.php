@@ -24,50 +24,38 @@
     TOP BAR CONTENT & NOTIFICATIONS
     *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <?php include($_SERVER['DOCUMENT_ROOT'] . $this->config->item('htdoc_folder') . 'application/views/headbar_peserta.php'); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . $this->config->item('htdoc_folder') . 'application/views/headbar.php'); ?>
     <!--header end-->
 
     <!-- **********************************************************************************************************************************************************
     MAIN SIDEBAR MENU
     *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . $this->config->item('htdoc_folder') . 'application/views/sidebar_master.php'); ?>
     <!--sidebar end-->
 
     <!-- **********************************************************************************************************************************************************
     MAIN CONTENT
     *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="">
+    <section id="main-content">
         <section class="wrapper site-min-height">
-            <div class="col-md-12 text-center" style="margin-top: 10px; margin-bottom: 10px;">Welcome, <?php echo $_SESSION['nama']; ?></div>
-            <div class="col-md-8 col-md-offset-2 white-bg" style="text-align: center">
+            <div class="col-md-8 col-md-offset-2" style="text-align: center">
                 <?php if(sizeof($active_question) > 0){ ?>
-                    <h3 id="pertanyaan">
-                        <?=$active_question[0]->urutan_soal . ". " . $active_question[0]->pertanyaan?>
-                    </h3>
-                    <div id="jawaban_benar" class="btn btn-info" style="font-size:30pt">
-                        <?php if($active_question[0]->show_jawaban==1){?>
-                            <?php if($active_question[0]->jawaban == 0){echo "SALAH";}else{echo "BENAR";} ?></div>
-                        <?php } ?>
-                    </div>
-                <?php }else {?>
-                    <h3 id="pertanyaan">Silahkan Menunggu Soal</h3>
-                    <div id="jawaban_benar" class="btn btn-info" style="font-size:30pt">
-                    </div>
-                <?php } ?>
-                    <div class="row" style="margin-top: 50px;" id="row_soal">
-                        <input type="hidden" value="<?php if(sizeof($active_question) > 0){echo $active_question[0]->id;} ?> " id="tid" name="tid" />
-                        <input type="hidden" value="<?=$jawaban?>" id="tjawab" name="tjawab" />
-                        <button id="btn_benar" onclick="click_benar(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">BENAR</button>
-                        <button id="btn_salah" onclick="click_salah(this)" class="btn col-sm-3 col-sm-offset-2 btn-default waves-effect btnjawab">SALAH</button>
-                    </div>
-                    <div class="row" style="margin-top: 30px;" id="row_jawaban">
-                        <h4>Kunci jawaban Anda!</h4>
-                        <div class="row">
-                            <button id="btn_kunci" onclick="lock(this)" class="btn col-sm-8 col-sm-offset-2 btn-default waves-effect btnjawab">KUNCI JAWABAN</button>
-                        </div>
-                        <h5 style="color:red;">*Jawaban terkunci apabila tombol berwarna kuning</h5>
-                    </div>
+                <div id="pertanyaan" style="font-size:60pt;margin-top: 50px;">
+                    <?=$active_question[0]->urutan_soal . ". " . $active_question[0]->pertanyaan?>
+                </div>
+                <div id="jawaban_benar" class="btn btn-info" style="font-size:60pt">
+                    <?php if($active_question[0]->show_jawaban==1){?>
+                            <?php if($active_question[0]->jawaban == 0){echo "SALAH";}else{echo "BENAR";} ?>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php }else {?>
+                <div id="pertanyaan" style="font-size:60pt;margin-top: 50px;">Silahkan Menunggu Soal</div>
+                <div id="jawaban_benar" class="btn btn-info" style="font-size:60pt">
+                </div>
+            <?php } ?>
             </div>
         </section>
     </section>
@@ -79,38 +67,22 @@
 
 <script type="text/javascript">
     $(window).load(function(){
-        if("<?=$jawaban?>" != "None"){
-            if(<?=$jawaban?> == 1){
-                $("#btn_benar").addClass("btn-success");
-            }else{
-                $("#btn_salah").addClass("btn-danger");
-            }
-            $("#btn_salah").attr('disabled','disabled');
-            $("#btn_benar").attr('disabled','disabled');
-            $("#btn_kunci").addClass("btn-warning");
-        }
         $("#jawaban_benar").hide();
         <?php if(sizeof($active_question) == 0){ ?>
-            $("#row_soal").hide();
-            $("#row_jawaban").hide();
-            $("#tid").val("");
-            $("#tjawab").val("");
+            $("#jawaban_benar").hide();
         <?php } else {
-                if($active_question[0]->show_jawaban == 1){
+        if($active_question[0]->show_jawaban == 1){
         ?>
-            $("#row_soal").hide();
-            $("#row_jawaban").hide();
             $("#jawaban_benar").show();
         <?php
-                }
+        }
         ?>
 
         <?php } ?>
     });
 
     $(document).ready(function(){
-        $("#menu_gelombang").addClass('active');
-        $("#sub_menu_master_data").css("display", "block");
+        $("#menu_soal").addClass('active');
         $("#err_msg").addClass('text-center');
         $(".sldown").slideDown("slow");
         $(".slup").slideUp("slow");
@@ -118,58 +90,6 @@
         $(".slhide").hide();
         $(".slshow").show();
     });
-
-    function click_benar(e){
-        $(e).removeClass("btn-default");
-        $(e).addClass("btn-success");
-        $("#btn_salah").removeClass("btn-danger");
-        $("#btn_salah").addClass("btn-default");
-        $("#tjawab").val(1);
-    }
-
-    function click_salah(e){
-        $(e).removeClass("btn-default");
-        $(e).addClass("btn-danger");
-        $("#btn_benar").removeClass("btn-success");
-        $("#btn_benar").addClass("btn-default");
-        $("#tjawab").val(0);
-    }
-
-    function lock(e){
-        if($("#tjawab").val() != "" && !$("#btn_kunci").hasClass("btn-warning")){
-            $("#btn_salah").attr('disabled','disabled');
-            $("#btn_benar").attr('disabled','disabled');
-            $(e).addClass("btn-warning");
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() . index_page() . "/Jawabpertanyaan/submit_jawaban"; ?>",
-                dataType: "json",
-                data: {soal_id: $("#tid").val(), jawaban: $("#tjawab").val()},
-                success: function(data) {
-                    if(!data[0]){
-                        $("#btn_kunci").removeClass("btn-warning");
-                        $("#btn_benar").removeClass("btn-success");
-                        $("#btn_benar").addClass("btn-default");
-                        $("#btn_salah").removeClass("btn-danger");
-                        $("#btn_salah").addClass("btn-default");
-                        $("#btn_salah").removeAttr('disabled');
-                        $("#btn_benar").removeAttr('disabled');
-                        $("#tjawab").val("");
-                    }
-                },
-                error: function(){
-                    $("#btn_kunci").removeClass("btn-warning");
-                    $("#btn_benar").removeClass("btn-success");
-                    $("#btn_benar").addClass("btn-default");
-                    $("#btn_salah").removeClass("btn-danger");
-                    $("#btn_salah").addClass("btn-default");
-                    $("#btn_salah").removeAttr('disabled');
-                    $("#btn_benar").removeAttr('disabled');
-                    $("#tjawab").val("");
-                }
-            });
-        }
-    }
 
     function check_new_question(){
         $.ajax({

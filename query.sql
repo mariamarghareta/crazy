@@ -15,5 +15,5 @@ select p.wilayah_id, tny.gelombang_id, sum(case when jwb.jawaban = tny.jawaban t
 from jawabpertanyaan jwb
 left join pertanyaan tny on tny.id = jwb.soal_id
 left join pengguna p on p.id = jwb.pengguna_id
-where tny.active = 2 and p.deleted = 0
+where tny.is_close = 1 and p.deleted = 0
 group by p.wilayah_id, tny.gelombang_id

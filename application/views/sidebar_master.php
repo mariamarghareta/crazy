@@ -17,6 +17,12 @@
                     <span>Control Soal</span>
                 </a>
             </li>
+            <li class="sub-menu">
+                <a href="<?= base_url();?><?= index_page();?>/Showsoal" id="menu_soal" >
+                    <i class="fa fa-clock-o"></i>
+                    <span>Show Soal</span>
+                </a>
+            </li>
             <?php if ($_SESSION['role_id'] == 1) {?>
                 <li class="sub-menu">
                     <a class="" href="#" id="menu_bt">

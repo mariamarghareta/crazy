@@ -72,7 +72,7 @@ class Pertanyaan extends CI_Model
     }
 
     public function show_all(){
-        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal')
+        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban')
             ->from('pertanyaan p')
             ->where('p.deleted',0)
             ->join('pengguna c', 'c.id = p.create_id')
@@ -83,7 +83,7 @@ class Pertanyaan extends CI_Model
     }
 
     public function get_gelombang_active(){
-        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal')
+        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban')
             ->from('pertanyaan p')
             ->join('pengguna c', 'c.id = p.create_id')
             ->join('pengguna w', 'w.id = p.write_id')
@@ -106,6 +106,7 @@ class Pertanyaan extends CI_Model
     public function just_active($id, $gelombang_id, $write_uid){
         $data = array(
             'active' => 0,
+            'show_jawaban' => 0,
             'write_id' => $write_uid,
             'write_time' => $this->get_now()
         );
@@ -124,6 +125,7 @@ class Pertanyaan extends CI_Model
     public function close($id, $gelombang_id, $write_uid){
         $data = array(
             'active' => 0,
+            'show_jawaban' => 0,
             'write_id' => $write_uid,
             'write_time' => $this->get_now()
         );
@@ -133,7 +135,28 @@ class Pertanyaan extends CI_Model
 
     public function done($id, $gelombang_id, $write_uid){
         $data = array(
-            'active' => 2,
+            'active' => 0,
+            'is_close' => 1,
+            'write_id' => $write_uid,
+            'write_time' => $this->get_now()
+        );
+        $this->db->where('id', $id);
+        return $this->db->update('pertanyaan', $data);
+    }
+
+    public function show_answer($id, $gelombang_id, $write_uid){
+        $data = array(
+            'show_jawaban' => 0,
+            'active' => 0,
+            'write_id' => $write_uid,
+            'write_time' => $this->get_now()
+        );
+        $this->db->where('show_jawaban', 1);
+        $this->db->update('pertanyaan', $data);
+
+        $data = array(
+            'show_jawaban' => 1,
+            'active' => 1,
             'write_id' => $write_uid,
             'write_time' => $this->get_now()
         );
@@ -142,7 +165,7 @@ class Pertanyaan extends CI_Model
     }
 
     public function get_active_question(){
-        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal')
+        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban, p.is_close')
             ->from('pertanyaan p')
             ->join('pengguna c', 'c.id = p.create_id')
             ->join('pengguna w', 'w.id = p.write_id')

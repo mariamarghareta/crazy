@@ -198,6 +198,13 @@ class Masterpertanyaan extends CI_Controller {
         $result = $this->Pertanyaan->done($soal_id, $gelombang_id, $_SESSION['id']);
         echo json_encode([$result]);
     }
+    public function show_answer(){
+        $this->check_role();
+        $soal_id = $this->input->post('soal_id');
+        $gelombang_id = $this->input->post('gelombang_id');
+        $result = $this->Pertanyaan->show_answer($soal_id, $gelombang_id, $_SESSION['id']);
+        echo json_encode([$result]);
+    }
 
     public function logout(){
         session_destroy();

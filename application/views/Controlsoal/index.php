@@ -77,12 +77,25 @@
                                         <div class="col-sm-1"><?=$arr_soal[$i]->urutan_soal?></div>
                                         <div class="col-sm-5"><?=$arr_soal[$i]->pertanyaan?></div>
                                         <div class="col-sm-2 <?php if($arr_soal[$i]->jawaban == 1){echo" right";}else{echo" wrong";}?> " ><?php if($arr_soal[$i]->jawaban == 1){echo"Benar";}else{echo"Salah";}?></div>
-                                        <div class="col-sm-1 lb_status"> <?php if($arr_soal[$i]->active == 1){echo "Active";} else if ($arr_soal[$i]->active == 2){ echo "Done";}else{echo"";}?> </div>
+                                        <div class="col-sm-1 lb_status">
+                                            <?php
+                                                if($arr_soal[$i]->active == 1 && $arr_soal[$i]->show_jawaban == 0){
+                                                    echo "Active";
+                                                } else if($arr_soal[$i]->active == 1 && $arr_soal[$i]->show_jawaban == 1){
+                                                    echo "Show Answer";
+                                                }else if ($arr_soal[$i]->active == 2){
+                                                    echo "Done";
+                                                }else{
+                                                    echo"";
+                                                }
+                                            ?>
+                                        </div>
                                         <div class="col-sm-3">
                                             <?php if($arr_soal[$i]->active != 2) {?>
                                             <button onclick="to_active(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-danger waves-effect">Open</button>
                                             <button onclick="to_close(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-primary waves-effect">Close</button>
                                             <button onclick="to_done(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-sucess waves-effect">Done</button>
+                                            <button onclick="to_show_answer(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-warning waves-effect">Show Jawaban</button>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -161,6 +174,21 @@
             }
         });
     }
+    function to_show_answer(e, $id_soal){
+        $gelombang_id = ($("#gelombang_id").val());
+        $soal_id = ($id_soal);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url() . index_page() . "/Masterpertanyaan/show_answer"; ?>",
+            dataType: "json",
+            data: {soal_id: $soal_id, gelombang_id: $gelombang_id},
+            success: function(data) {
+                if(data[0]){
+                    $(e).parent().parent().find('.lb_status').html('Show Answer');
+                }
+            }
+        });
+    }
     function active_gelombang(){
         $gelombang_id = ($("#gelombang_id").val());
         $.ajax({
@@ -193,6 +221,7 @@
                     $str += ' <button onclick="to_active(this,' + data[1][$i]["id"] +')" class="btn btn-danger waves-effect">Open</button>';
                     $str += ' <button onclick="to_close(this,' + data[1][$i]["id"] +')" class="btn btn-primary waves-effect">Close</button>';
                     $str += ' <button onclick="to_done(this,' + data[1][$i]["id"] +')" class="btn btn-sucess waves-effect">Done</button>';
+                    $str += ' <button onclick="to_show_answer(this,' + data[1][$i]["id"] +')" class="btn btn-warning waves-effect">Show Jawaban</button>';
                     $str += '</div>';
                     $str += '</div>';
                 }
