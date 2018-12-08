@@ -91,7 +91,7 @@
                                             ?>
                                         </div>
                                         <div class="col-sm-3">
-                                            <?php if($arr_soal[$i]->active != 2) {?>
+                                            <?php if($arr_soal[$i]->is_close != 1) {?>
                                             <button onclick="to_active(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-danger waves-effect">Open</button>
                                             <button onclick="to_close(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-primary waves-effect">Close</button>
                                             <button onclick="to_done(this,<?php echo $arr_soal[$i]->id; ?>)" class="btn btn-sucess waves-effect">Done</button>
@@ -218,10 +218,12 @@
                         $str += '<div class="col-sm-1 lb_status"></div>';
                     }
                     $str += '<div class="col-sm-3">';
-                    $str += ' <button onclick="to_active(this,' + data[1][$i]["id"] +')" class="btn btn-danger waves-effect">Open</button>';
-                    $str += ' <button onclick="to_close(this,' + data[1][$i]["id"] +')" class="btn btn-primary waves-effect">Close</button>';
-                    $str += ' <button onclick="to_done(this,' + data[1][$i]["id"] +')" class="btn btn-sucess waves-effect">Done</button>';
-                    $str += ' <button onclick="to_show_answer(this,' + data[1][$i]["id"] +')" class="btn btn-warning waves-effect">Show Jawaban</button>';
+                    if(data[1][$i]["is_close"] != 1){
+                        $str += ' <button onclick="to_active(this,' + data[1][$i]["id"] +')" class="btn btn-danger waves-effect">Open</button>';
+                        $str += ' <button onclick="to_close(this,' + data[1][$i]["id"] +')" class="btn btn-primary waves-effect">Close</button>';
+                        $str += ' <button onclick="to_done(this,' + data[1][$i]["id"] +')" class="btn btn-sucess waves-effect">Done</button>';
+                        $str += ' <button onclick="to_show_answer(this,' + data[1][$i]["id"] +')" class="btn btn-warning waves-effect">Show Jawaban</button>';
+                    }
                     $str += '</div>';
                     $str += '</div>';
                 }

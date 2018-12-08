@@ -38,5 +38,17 @@ class Jwbpertanyaan extends CI_Model
             ->get();
         return $query->result();
     }
+
+    public function get_from_soal($soal){
+        $query = $this->db->select('p.id, p.jawaban, pengguna.username, pertanyaan.pertanyaan, pengguna.wilayah_id')
+            ->from('jawabpertanyaan p')
+            ->join('pengguna','pengguna.id = p.pengguna_id', 'left')
+            ->join('pertanyaan','pertanyaan.id = p.soal_id', 'left')
+            ->where('p.soal_id', $soal)
+            ->where('p.deleted',0)
+            ->order_by('pengguna.wilayah_id asc')
+            ->get();
+        return $query->result();
+    }
 }
 ?>

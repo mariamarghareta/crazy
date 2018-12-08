@@ -72,7 +72,7 @@ class Pertanyaan extends CI_Model
     }
 
     public function show_all(){
-        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban')
+        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban, p.is_close')
             ->from('pertanyaan p')
             ->where('p.deleted',0)
             ->join('pengguna c', 'c.id = p.create_id')
@@ -83,7 +83,7 @@ class Pertanyaan extends CI_Model
     }
 
     public function get_gelombang_active(){
-        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban')
+        $query = $this->db->select('p.id, p.pertanyaan, p.jawaban, p.gelombang_id, p.active, p.create_time, p.write_time, c.nama as create_user, w.nama as write_user, g.nama as gelombang_name, p.urutan_soal, p.show_jawaban, p.is_close')
             ->from('pertanyaan p')
             ->join('pengguna c', 'c.id = p.create_id')
             ->join('pengguna w', 'w.id = p.write_id')

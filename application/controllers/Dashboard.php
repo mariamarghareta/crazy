@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
             $tot = 0;
             $total_score = $this->Pengguna->get_total_per_wil($i+1, $gel);
             if(sizeof($total_score) > 0){
-                $tot = $total_score[0]->score;
+                $tot = $total_score[0]->score * 10;
             }
             array_push($this->data["total_score"],$tot);
         }
@@ -47,7 +47,7 @@ class Dashboard extends CI_Controller {
             $tot = 0;
             $total_score = $this->Pengguna->get_total_per_wil($i+1, $gel);
             if(sizeof($total_score) > 0){
-                $tot = $total_score[0]->score;
+                $tot = $total_score[0]->score * 10;
             }
             array_push($this->data["total_score"],$tot);
         }

@@ -196,7 +196,6 @@
                 }
             },
             error: function(){
-                alert("error");
             }
         });
     }
